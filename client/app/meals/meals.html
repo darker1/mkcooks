@@ -1,0 +1,24 @@
+<div>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input ng-model="searchIngredient" type="text" class="form-control" placeholder="Ingredient Search" typeahead-on-select="searchByIngredient($item)" typeahead="name for name in possibleIngredients | limitTo:3" typeahead-focus-first="true">
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="searchByIngredient(searchIngredient)">Submit</button>
+      </form>
+	<div ng-repeat="meal in meals |filter:{active: true}">
+		<div class="col-sm-4 col-md-4">
+			<div class="thumbnail" style="background-color: #eee;padding-bottom : 20px; border-radius: 15px;"> 
+				<a ng-href="/meal/{{meal._id}}"><img style="border-radius: 15px;" ng-src="{{meal.thumbnail}}"></a>
+				<div class="caption">
+					<h4 style="text-align:center">{{meal.name}}</h4>
+				 	<p>{{meal.shortDescription}}</p>
+				 	<p>
+						<span  class="label label-info pull-left">Serves <span class="badge">{{meal.serves}}</span></span>
+						
+				 		<span  class="pull-right">by <a href="#"  tooltip-trigger="mouseenter" tooltip-placement="top" tooltip="{{meal.author}}" >{{meal.shortAuthor}}</a></span>
+				 	</p>
+				 </div>
+			</div>
+		</div>
+	</div>
+</div>
